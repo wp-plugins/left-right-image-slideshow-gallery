@@ -177,7 +177,7 @@
   </div>
   <table width="100%">
     <tr>
-      <td align="right"><input name="text_management" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=left-right-image-slideshow-gallery/image-management.php'" value="Go to - Image Management" type="button" />
+      <td align="right" height="30"><input name="text_management" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=left-right-image-slideshow-gallery/image-management.php'" value="Go to - Image Management" type="button" />
         <input name="setting_management" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=left-right-image-slideshow-gallery/left-right-image-slideshow-gallery.php'" value="Go to - Gallery Setting" type="button" />
 		<input name="Help1" lang="publish" class="button-primary" onclick="Lrisg_help()" value="Help" type="button" />
       </td>
