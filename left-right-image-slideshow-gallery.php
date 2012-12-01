@@ -5,7 +5,7 @@ Plugin Name: Left right image slideshow gallery
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Description: Left right image slideshow gallery lets showcase images in a horizontal move style. Single image at a time and pull one by one continually. This slideshow will pause on mouse over. The speed of the plugin gallery is customizable. Persistence of last viewed image supported, so when the user reloads the page, the slideshow continues from the last image.
 Author: Gopi.R
-Version: 9.1
+Version: 9.2
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags: image, slideshow, gallery
@@ -284,7 +284,7 @@ function Lrisg_shortcode( $atts )
 		$Lrisg_package = substr($Lrisg_package,0,(strlen($Lrisg_package)-1));
 		$Lrisg_pluginurl = get_option('siteurl') . "/wp-content/plugins/left-right-image-slideshow-gallery/";
 		$type = "auto";
-		$wrapperid = $Lrisg_type;
+		$wrapperid = "left" . $Lrisg_type;
 		$Lr = $Lr .'<script type="text/javascript">';
 		$Lr = $Lr .'var Lrisg_SlideShow=new Lrisg_Show({Lrisg_Wrapperid: "'.$wrapperid.'",Lrisg_WidthHeight: ['.$Lrisg_width.', '.$Lrisg_height.'], Lrisg_ImageArray: [ '.$Lrisg_package.' ],Lrisg_Displaymode: {type:"'.$type.'", pause:'.$Lrisg_pause.', cycles:'.$Lrisg_cycles.', pauseonmouseover:true},Lrisg_Orientation: "h",Lrisg_Persist: '.$Lrisg_persist.',Lrisg_Slideduration: '.$Lrisg_slideduration.' })';
 		$Lr = $Lr .'</script>';
@@ -328,7 +328,7 @@ function Lrisg_add_javascript_files()
 {
 	if (!is_admin())
 	{
-		wp_enqueue_script( 'jquery.min', get_option('siteurl').'/wp-content/plugins/left-right-image-slideshow-gallery/inc/jquery.min.js');
+		wp_enqueue_script('jquery');
 		wp_enqueue_script( 'left-right-image-slideshow-gallery', get_option('siteurl').'/wp-content/plugins/left-right-image-slideshow-gallery/inc/left-right-image-slideshow-gallery.js');
 	}
 }
