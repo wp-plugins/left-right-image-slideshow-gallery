@@ -72,14 +72,14 @@ function Lrisg_delete(id)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.frm_Lrisg_display.action="options-general.php?page=left-right-image-slideshow-gallery/image-management.php&AC=DEL&DID="+id;
+		document.frm_Lrisg_display.action="options-general.php?page=left-right-image-slideshow-gallery&ac=del&did="+id;
 		document.frm_Lrisg_display.submit();
 	}
 }	
 
 function Lrisg_redirect()
 {
-	window.location = "options-general.php?page=left-right-image-slideshow-gallery/image-management.php";
+	window.location = "options-general.php?page=left-right-image-slideshow-gallery";
 }
 
 function Lrisg_help()
