@@ -5,8 +5,8 @@ Author URI: URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-r
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags:  image, slideshow, gallery,
 Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 10.0
+Tested up to: 3.8
+Stable tag: 10.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -29,6 +29,7 @@ Left right image slideshow gallery lets showcase images in a horizontal move sty
 *	Can use many time in the same page.
 *	Can stop the slideshow after some cycle.
 *	Short code available for pages and posts.
+*	Supports localization.
 
 We have three option to install and configure this Left right image slideshow gallery plugin. 
 
@@ -93,7 +94,16 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slides
 
 1. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
+2. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
+
 == Upgrade Notice ==
+
+= 10.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (lrisg.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Manual table creation required).
 
 = 10.0 =
 
@@ -150,6 +160,13 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.1 =
+
+1. Tested up to 3.8
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (lrisg.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Manual table creation required).
 
 = 10.0 =
 

@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name: Left right image slideshow gallery
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Description: Left right image slideshow gallery lets showcase images in a horizontal move style. Single image at a time and pull one by one continually. This slideshow will pause on mouse over. The speed of the plugin gallery is customizable. Persistence of last viewed image supported, so when the user reloads the page, the slideshow continues from the last image.
 Author: Gopi.R
-Version: 10.0
+Version: 10.1
 Author URI: http://www.gopiplus.com/work/
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags: image, slideshow, gallery
@@ -15,14 +14,22 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_LRISG_TABLE", $wpdb->prefix . "lrisg_plugin");
-define("WP_Lrisg_UNIQUE_NAME", "ivrss");
-define("WP_Lrisg_TITLE", "Left right image slideshow gallery");
-define('WP_Lrisg_LINK', 'Check official website for more information <a target="_blank" href="http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/">click here</a>');
-define('WP_Lrisg_FAV', 'http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/');
+define('WP_LRISG_FAV', 'http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/');
+
+if ( ! defined( 'WP_LRISG_BASENAME' ) )
+	define( 'WP_LRISG_BASENAME', plugin_basename( __FILE__ ) );
+	
+if ( ! defined( 'WP_LRISG_PLUGIN_NAME' ) )
+	define( 'WP_LRISG_PLUGIN_NAME', trim( dirname( WP_LRISG_BASENAME ), '/' ) );
+	
+if ( ! defined( 'WP_LRISG_PLUGIN_URL' ) )
+	define( 'WP_LRISG_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_LRISG_PLUGIN_NAME );
+	
+if ( ! defined( 'WP_LRISG_ADMIN_URL' ) )
+	define( 'WP_LRISG_ADMIN_URL', get_option('siteurl') . '/wp-admin/options-general.php?page=left-right-image-slideshow-gallery' );
 
 function Lrisg() 
 {
-	
 	global $wpdb;
 	$Lrisg_package = "";
 	$Lrisg_title = get_option('Lrisg_title');
@@ -35,11 +42,11 @@ function Lrisg()
 	$Lrisg_random = get_option('Lrisg_random');
 	$Lrisg_type = get_option('Lrisg_type');
 	
-	if(!is_numeric(@$Lrisg_width)) { @$Lrisg_width = 250 ;}
-	if(!is_numeric(@$Lrisg_height)) { @$Lrisg_height = 200; }
-	if(!is_numeric(@$Lrisg_pause)) { @$Lrisg_pause = 2000; }
-	if(!is_numeric(@$Lrisg_cycles)) { @$Lrisg_cycles = 5; }
-	if(!is_numeric(@$Lrisg_slideduration)) { @$Lrisg_slideduration = 300; }
+	if(!is_numeric($Lrisg_width)) { $Lrisg_width = 250;}
+	if(!is_numeric($Lrisg_height)) { $Lrisg_height = 200; }
+	if(!is_numeric($Lrisg_pause)) { $Lrisg_pause = 2000; }
+	if(!is_numeric($Lrisg_cycles)) { $Lrisg_cycles = 5; }
+	if(!is_numeric($Lrisg_slideduration)) { $Lrisg_slideduration = 300; }
 	
 	$sSql = "select Lrisg_path,Lrisg_link,Lrisg_target,Lrisg_title from ".WP_LRISG_TABLE." where 1=1";
 	if($Lrisg_type <> ""){ $sSql = $sSql . " and Lrisg_type='".$Lrisg_type."'"; }
@@ -53,83 +60,77 @@ function Lrisg()
 		{
 			$Lrisg_package = $Lrisg_package .'["'.$data->Lrisg_path.'", "'.$data->Lrisg_link.'", "'.$data->Lrisg_target.'"],';
 		}
+		$Lrisg_package = substr($Lrisg_package,0,(strlen($Lrisg_package)-1));
+		?>
+		<script type="text/javascript">
+		var Lrisg_SlideShow=new Lrisg_Show({
+			Lrisg_Wrapperid: "Lrisg_widgetss", 
+			Lrisg_WidthHeight: [<?php echo $Lrisg_width; ?>, <?php echo $Lrisg_height; ?>], 
+			Lrisg_ImageArray: [ <?php echo $Lrisg_package; ?> ],
+			Lrisg_Displaymode: {type:'auto', pause:<?php echo $Lrisg_pause; ?>, cycles:<?php echo $Lrisg_cycles; ?>, pauseonmouseover:true},
+			Lrisg_Orientation: "h", 
+			Lrisg_Persist: <?php echo $Lrisg_persist; ?>, 
+			Lrisg_Slideduration: <?php echo $Lrisg_slideduration; ?> 
+		})
+		</script>
+		<div id="Lrisg_widgetss" style="max-width:100%"></div>
+		<?php
 	}	
-	$Lrisg_package = substr($Lrisg_package,0,(strlen($Lrisg_package)-1));
-	
-	?>
-    <script type="text/javascript">
-
-	var Lrisg_SlideShow=new Lrisg_Show({
-		Lrisg_Wrapperid: "Lrisg_widgetss", 
-		Lrisg_WidthHeight: [<?php echo $Lrisg_width; ?>, <?php echo $Lrisg_height; ?>], 
-		Lrisg_ImageArray: [ <?php echo $Lrisg_package; ?> ],
-		Lrisg_Displaymode: {type:'auto', pause:<?php echo $Lrisg_pause; ?>, cycles:<?php echo $Lrisg_cycles; ?>, pauseonmouseover:true},
-		Lrisg_Orientation: "h", 
-		Lrisg_Persist: <?php echo $Lrisg_persist; ?>, 
-		Lrisg_Slideduration: <?php echo $Lrisg_slideduration; ?> 
-	})
-	
-	</script>
-    <div id="Lrisg_widgetss"></div>
-    <?php
+	else
+	{
+		_e('Please check the widget setting gallery group', 'lrisg');
+	}
 }
 
 function Lrisg_install() 
 {
-	
 	global $wpdb;
-	
 	if($wpdb->get_var("show tables like '". WP_LRISG_TABLE . "'") != WP_LRISG_TABLE) 
 	{
-		$sSql = "CREATE TABLE IF NOT EXISTS `". WP_LRISG_TABLE . "` (";
-		$sSql = $sSql . "`Lrisg_id` INT NOT NULL AUTO_INCREMENT ,";
-		$sSql = $sSql . "`Lrisg_path` TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_link` TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_target` VARCHAR( 50 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_title` VARCHAR( 500 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_order` INT NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_status` VARCHAR( 10 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_type` VARCHAR( 100 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_extra1` VARCHAR( 100 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_extra2` VARCHAR( 100 ) NOT NULL ,";
-		$sSql = $sSql . "`Lrisg_date` datetime NOT NULL default '0000-00-00 00:00:00' ,";
-		$sSql = $sSql . "PRIMARY KEY ( `Lrisg_id` )";
-		$sSql = $sSql . ")";
+		$sSql = "CREATE TABLE IF NOT EXISTS ". WP_LRISG_TABLE . " (";
+		$sSql = $sSql . "Lrisg_id INT NOT NULL AUTO_INCREMENT ,";
+		$sSql = $sSql . "Lrisg_path TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
+		$sSql = $sSql . "Lrisg_link TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
+		$sSql = $sSql . "Lrisg_target VARCHAR( 50 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_title VARCHAR( 500 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_order INT NOT NULL ,";
+		$sSql = $sSql . "Lrisg_status VARCHAR( 10 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_type VARCHAR( 100 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_extra1 VARCHAR( 100 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_extra2 VARCHAR( 100 ) NOT NULL ,";
+		$sSql = $sSql . "Lrisg_date datetime NOT NULL default '0000-00-00 00:00:00' ,";
+		$sSql = $sSql . "PRIMARY KEY ( Lrisg_id )";
+		$sSql = $sSql . ") ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
 		$wpdb->query($sSql);
 		
-		$IsSql = "INSERT INTO `". WP_LRISG_TABLE . "` (`Lrisg_path`, `Lrisg_link`, `Lrisg_target` , `Lrisg_title` , `Lrisg_order` , `Lrisg_status` , `Lrisg_type` , `Lrisg_date`)"; 
-		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/left-right-image-slideshow-gallery/images/250x167_1.jpg', '#', '_blank', 'Image 1', '1', 'YES', 'Widget', '0000-00-00 00:00:00');";
+		$IsSql = "INSERT INTO `". WP_LRISG_TABLE . "` (Lrisg_path, Lrisg_link, Lrisg_target, Lrisg_title, Lrisg_order, Lrisg_status, Lrisg_type, Lrisg_date)"; 
+		$sSql = $IsSql . " VALUES ('".WP_LRISG_PLUGIN_URL."/images/250x167_1.jpg', '#', '_blank', 'Image 1', '1', 'YES', 'Widget', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
-		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/left-right-image-slideshow-gallery/images/250x167_2.jpg' ,'#', '_blank', 'Image 2', '2', 'YES', 'Widget', '0000-00-00 00:00:00');";
+		$sSql = $IsSql . " VALUES ('".WP_LRISG_PLUGIN_URL."/images/250x167_2.jpg' ,'#', '_blank', 'Image 2', '2', 'YES', 'Widget', '0000-00-00 00:00:00');";
+		$wpdb->query($sSql);	
+		$sSql = $IsSql . " VALUES ('".WP_LRISG_PLUGIN_URL."/images/250x167_3.jpg', '#', '_blank', 'Image 3', '1', 'YES', 'Sample', '0000-00-00 00:00:00');";
+		$wpdb->query($sSql);	
+		$sSql = $IsSql . " VALUES ('".WP_LRISG_PLUGIN_URL."/images/250x167_4.jpg', '#', '_blank', 'Image 4', '2', 'YES', 'Sample', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
-		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/left-right-image-slideshow-gallery/images/250x167_3.jpg', '#', '_blank', 'Image 3', '1', 'YES', 'Sample', '0000-00-00 00:00:00');";
-		$wpdb->query($sSql);
-		
-		$sSql = $IsSql . " VALUES ('".get_option('siteurl')."/wp-content/plugins/left-right-image-slideshow-gallery/images/250x167_4.jpg', '#', '_blank', 'Image 4', '2', 'YES', 'Sample', '0000-00-00 00:00:00');";
-		$wpdb->query($sSql);
-
 	}
-
 	add_option('Lrisg_title', "Left right slideshow");
 	add_option('Lrisg_width', "260");
 	add_option('Lrisg_height', "200");
 	add_option('Lrisg_pause', "2000");
-	add_option('Lrisg_cycles', "5");
+	add_option('Lrisg_cycles', "15");
 	add_option('Lrisg_persist', "true");
 	add_option('Lrisg_slideduration', "300");
 	add_option('Lrisg_random', "NO");
 	add_option('Lrisg_type', "Widget");
-
 }
 
 function Lrisg_control() 
 {
-	echo '<p>To change the setting goto <b>Left right slideshow</b> link under Settings menu. ';
-	echo '<a href="options-general.php?page=left-right-image-slideshow-gallery">click here</a></p>';
-	echo WP_Lrisg_LINK;
+	echo '<p><b>';
+	 _e('Left right slideshow', 'lrisg');
+	echo '.</b> ';
+	_e('Check official website for more information', 'lrisg');
+	?> <a target="_blank" href="<?php echo WP_LRISG_FAV; ?>"><?php _e('click here', 'lrisg'); ?></a></p><?php
 }
 
 function Lrisg_widget($args) 
@@ -193,12 +194,11 @@ function Lrisg_shortcode( $atts )
 	
 	$Lrisg_cycles = get_option('Lrisg_cycles');
 	$Lrisg_slideduration = get_option('Lrisg_slideduration');
-	
-	if(!is_numeric(@$Lrisg_width)) { @$Lrisg_width = 250 ;}
-	if(!is_numeric(@$Lrisg_height)) { @$Lrisg_height = 200; }
-	if(!is_numeric(@$Lrisg_cycles)) { @$Lrisg_cycles = 5; }
-	if(!is_numeric(@$Lrisg_slideduration)) { @$Lrisg_slideduration = 300; }
-	if(!is_numeric(@$Lrisg_pause)) { @$Lrisg_pause = 2000; }
+	if(!is_numeric($Lrisg_width)) { $Lrisg_width = 250 ;}
+	if(!is_numeric($Lrisg_height)) { $Lrisg_height = 200; }
+	if(!is_numeric($Lrisg_cycles)) { $Lrisg_cycles = 5; }
+	if(!is_numeric($Lrisg_slideduration)) { $Lrisg_slideduration = 300; }
+	if(!is_numeric($Lrisg_pause)) { $Lrisg_pause = 2000; }
 	
 	$sSql = "select Lrisg_path,Lrisg_link,Lrisg_target,Lrisg_title from ".WP_LRISG_TABLE." where 1=1";
 	if($Lrisg_type <> ""){ $sSql = $sSql . " and Lrisg_type='".$Lrisg_type."'"; }
@@ -214,7 +214,6 @@ function Lrisg_shortcode( $atts )
 		}	
 		
 		$Lrisg_package = substr($Lrisg_package,0,(strlen($Lrisg_package)-1));
-		$Lrisg_pluginurl = get_option('siteurl') . "/wp-content/plugins/left-right-image-slideshow-gallery/";
 		$type = "auto";
 		$wrapperid = "left" . $Lrisg_type;
 		$Lr = $Lr .'<script type="text/javascript">';
@@ -224,7 +223,7 @@ function Lrisg_shortcode( $atts )
 	}	
 	else
 	{
-		$Lr = " Please check the short code ";
+		$Lr = __('Please check the short code', 'lrisg');
 	}
 	return $Lr;
 }
@@ -233,8 +232,9 @@ function Lrisg_add_to_menu()
 {
 	if (is_admin()) 
 	{
-		add_options_page('Left right image slideshow gallery', 'Left right slideshow', 'manage_options', 'left-right-image-slideshow-gallery', 'Lrisg_admin_options' );
-		//add_options_page('Left right image slideshow gallery', '', 'manage_options', "left-right-image-slideshow-gallery/image-management.php",'' );
+		add_options_page(__('Left right image slideshow gallery', 'lrisg'), 
+							__('Left right slideshow', 'lrisg'), 'manage_options', 
+								'left-right-image-slideshow-gallery', 'Lrisg_admin_options' );
 	}
 }
 
@@ -242,12 +242,12 @@ function Lrisg_init()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget('left-right-image-slideshow-gallery', 'Left right image slideshow gallery', 'Lrisg_widget');
+		wp_register_sidebar_widget('left-right-image-slideshow-gallery', __('Left right image slideshow gallery', 'lrisg'), 'Lrisg_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control('left-right-image-slideshow-gallery', array('Left right image slideshow gallery', 'widgets'), 'Lrisg_control');
+		wp_register_widget_control('left-right-image-slideshow-gallery', array(__('Left right image slideshow gallery', 'lrisg'), 'widgets'), 'Lrisg_control');
 	} 
 }
 
@@ -261,10 +261,16 @@ function Lrisg_add_javascript_files()
 	if (!is_admin())
 	{
 		wp_enqueue_script('jquery');
-		wp_enqueue_script( 'left-right-image-slideshow-gallery', get_option('siteurl').'/wp-content/plugins/left-right-image-slideshow-gallery/inc/left-right-image-slideshow-gallery.js');
+		wp_enqueue_script( 'left-right-image-slideshow-gallery', WP_LRISG_PLUGIN_URL.'/inc/left-right-image-slideshow-gallery.js');
 	}
 }
 
+function Lrisg_textdomain() 
+{
+	  load_plugin_textdomain( 'lrisg', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'Lrisg_textdomain');
 add_action('wp_enqueue_scripts', 'Lrisg_add_javascript_files');
 add_action("plugins_loaded", "Lrisg_init");
 register_activation_hook(__FILE__, 'Lrisg_install');

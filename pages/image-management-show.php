@@ -18,7 +18,7 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 	
 	if ($result != '1')
 	{
-		?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+		?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'lrisg'); ?></strong></p></div><?php
 	}
 	else
 	{
@@ -36,7 +36,7 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 			
 			//	Set success message
 			$Lrisg_success_msg = TRUE;
-			$Lrisg_success = __('Selected record was successfully deleted.', WP_Lrisg_UNIQUE_NAME);
+			$Lrisg_success = __('Selected record was successfully deleted.', 'lrisg');
 		}
 	}
 	
@@ -48,56 +48,54 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2><?php echo WP_Lrisg_TITLE; ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=left-right-image-slideshow-gallery&amp;ac=add">Add New</a></h2>
+    <h2><?php _e('Left right image slideshow gallery', 'lrisg'); ?>
+	<a class="add-new-h2" href="<?php echo WP_LRISG_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'lrisg'); ?></a></h2>
     <div class="tool-box">
 	<?php
 		$sSql = "SELECT * FROM `".WP_LRISG_TABLE."` order by Lrisg_type, Lrisg_order";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/left-right-image-slideshow-gallery/pages/setting.js"></script>
+		<script language="JavaScript" src="<?php echo WP_LRISG_PLUGIN_URL; ?>/pages/setting.js"></script>
 		<form name="frm_Lrisg_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th class="check-column" scope="row" scope="col"><input type="checkbox" name="Lrisg_group_item[]" /></td>
-			<th scope="col">Type</td>
-			<th scope="col">Reference</td>
-            <th scope="col">URL</td>
-			<th scope="col">Target</td>
-            <th scope="col">Order</td>
-            <th scope="col">Display</td>
+            <th class="check-column" scope="row"><input type="checkbox" name="Lrisg_group_item[]" /></th>
+			<th scope="col"><?php _e('Group', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Reference', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('URL', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Target', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('Order', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('Display', 'lrisg'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
-            <th class="check-column" scope="row" scope="col"><input type="checkbox" name="Lrisg_group_item[]" /></td>
-			<th scope="col">Type</td>
-			<th scope="col">Reference</td>
-            <th scope="col">URL</td>
-			<th scope="col">Target</td>
-            <th scope="col">Order</td>
-            <th scope="col">Display</td>
+            <th class="check-column" scope="row"><input type="checkbox" name="Lrisg_group_item[]" /></th>
+			<th scope="col"><?php _e('Group', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Reference', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('URL', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Target', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('Order', 'lrisg'); ?></th>
+            <th scope="col"><?php _e('Display', 'lrisg'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
-			<?php 
-			$i = 0;
-			$displayisthere = FALSE;
+		<?php 
+		$i = 0;
+		if(count($myData) > 0 )
+		{
 			foreach ($myData as $data)
 			{
-				if($data['Lrisg_status'] == 'YES') 
-				{
-					$displayisthere = TRUE; 
-				}
 				?>
 				<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-					<td align="left"><input type="checkbox" value="<?php echo $data['Lrisg_id']; ?>" name="Lrisg_group_item[]"></th>
+					<td align="left"><input type="checkbox" value="<?php echo $data['Lrisg_id']; ?>" name="Lrisg_group_item[]"></td>
 					<td>
 					<strong><?php echo esc_html(stripslashes($data['Lrisg_type'])); ?></strong>
 					<div class="row-actions">
-						<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=left-right-image-slideshow-gallery&amp;ac=edit&amp;did=<?php echo $data['Lrisg_id']; ?>">Edit</a> | </span>
-						<span class="trash"><a onClick="javascript:Lrisg_delete('<?php echo $data['Lrisg_id']; ?>')" href="javascript:void(0);">Delete</a></span> 
+						<span class="edit"><a title="Edit" href="<?php echo WP_LRISG_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['Lrisg_id']; ?>"><?php _e('Edit', 'lrisg'); ?></a> | </span>
+						<span class="trash"><a onClick="javascript:Lrisg_delete('<?php echo $data['Lrisg_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'lrisg'); ?></a></span> 
 					</div>
 					</td>
 					<td><?php echo esc_html(stripslashes($data['Lrisg_title'])); ?></td>
@@ -108,14 +106,13 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 				</tr>
 				<?php 
 				$i = $i+1; 
-				} 
-			?>
-			<?php 
-			if ($displayisthere == FALSE) 
-			{ 
-				?><tr><td colspan="6" align="center">No records available.</td></tr><?php 
-			} 
-			?>
+			}
+		}
+		else
+		{
+			?><tr><td colspan="6" align="center"><?php _e('No records available', 'lrisg'); ?></td></tr><?php 
+		}
+		?>
 		</tbody>
         </table>
 		<?php wp_nonce_field('Lrisg_form_show'); ?>
@@ -123,11 +120,15 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
       </form>	
 	  <div class="tablenav">
 	  <h2>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=left-right-image-slideshow-gallery&amp;ac=add">Add New</a>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/admin.php?page=left-right-image-slideshow-gallery&amp;ac=set">Widget setting</a>
-	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_Lrisg_FAV; ?>">Help</a>
+	  <a class="button add-new-h2" href="<?php echo WP_LRISG_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'lrisg'); ?></a>
+	  <a class="button add-new-h2" href="<?php echo WP_LRISG_ADMIN_URL; ?>&amp;ac=set"><?php _e('Widget setting', 'lrisg'); ?></a>
+	  <a class="button add-new-h2" target="_blank" href="<?php echo WP_LRISG_FAV; ?>"><?php _e('Help', 'lrisg'); ?></a>
 	  </h2>
 	  </div>
-	  <br /><p class="description"><?php echo WP_Lrisg_LINK; ?></p>
+	  <br />
+	  <p class="description">
+		<?php _e('Check official website for more information', 'lrisg'); ?>
+		<a target="_blank" href="<?php echo WP_LRISG_FAV; ?>"><?php _e('click here', 'lrisg'); ?></a>
+	  </p>
 	</div>
 </div>
