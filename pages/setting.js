@@ -36,12 +36,12 @@ function Lrisg_submit()
 		document.Lrisg_form.Lrisg_target.focus();
 		return false;
 	}
-//	else if(document.Lrisg_form.Lrisg_title.value=="")
-//	{
-//		alert("Please enter the image title.")
-//		document.Lrisg_form.Lrisg_title.focus();
-//		return false;
-//	}
+	//	else if(document.Lrisg_form.Lrisg_title.value=="")
+	//	{
+	//		alert("Please enter the image title.")
+	//		document.Lrisg_form.Lrisg_title.focus();
+	//		return false;
+	//	}
 	else if(document.Lrisg_form.Lrisg_order.value=="")
 	{
 		alert("Please enter the display order, only number.")

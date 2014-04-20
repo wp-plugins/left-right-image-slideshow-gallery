@@ -3,14 +3,16 @@
 Plugin Name: Left right image slideshow gallery
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Description: Left right image slideshow gallery lets showcase images in a horizontal move style. Single image at a time and pull one by one continually. This slideshow will pause on mouse over. The speed of the plugin gallery is customizable. Persistence of last viewed image supported, so when the user reloads the page, the slideshow continues from the last image.
-Author: Gopi.R
-Version: 10.1
-Author URI: http://www.gopiplus.com/work/
+Author: Gopi Ramasamy
+Version: 10.2
+Author URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags: image, slideshow, gallery
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 
 global $wpdb, $wp_version;
 define("WP_LRISG_TABLE", $wpdb->prefix . "lrisg_plugin");

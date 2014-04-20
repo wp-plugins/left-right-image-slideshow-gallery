@@ -3,10 +3,10 @@ Contributors: www.gopiplus.com, gopiplus
 Donate link: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Author URI: URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
-Tags:  image, slideshow, gallery,
+Tags:  image, slideshow, gallery
 Requires at least: 3.4
-Tested up to: 3.8
-Stable tag: 10.1
+Tested up to: 3.9
+Stable tag: 10.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -92,11 +92,16 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slides
 
 == Screenshots ==
 
-1. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
+1. Front Page. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
-2. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
+2. Admin Page. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
 == Upgrade Notice ==
+
+= 10.2 =
+
+1. Tested up to 3.9
+2. Added some security feature
 
 = 10.1 =
 
@@ -160,6 +165,11 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.2 =
+
+1. Tested up to 3.9
+2. Added some security feature
 
 = 10.1 =
 

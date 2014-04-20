@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 // Form submitted, check the data
 if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
@@ -62,10 +63,9 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
         <thead>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" name="Lrisg_group_item[]" /></th>
-			<th scope="col"><?php _e('Group', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Group/Type', 'lrisg'); ?></th>
 			<th scope="col"><?php _e('Reference', 'lrisg'); ?></th>
             <th scope="col"><?php _e('URL', 'lrisg'); ?></th>
-			<th scope="col"><?php _e('Target', 'lrisg'); ?></th>
             <th scope="col"><?php _e('Order', 'lrisg'); ?></th>
             <th scope="col"><?php _e('Display', 'lrisg'); ?></th>
           </tr>
@@ -73,10 +73,9 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 		<tfoot>
           <tr>
             <th class="check-column" scope="row"><input type="checkbox" name="Lrisg_group_item[]" /></th>
-			<th scope="col"><?php _e('Group', 'lrisg'); ?></th>
+			<th scope="col"><?php _e('Group/Type', 'lrisg'); ?></th>
 			<th scope="col"><?php _e('Reference', 'lrisg'); ?></th>
             <th scope="col"><?php _e('URL', 'lrisg'); ?></th>
-			<th scope="col"><?php _e('Target', 'lrisg'); ?></th>
             <th scope="col"><?php _e('Order', 'lrisg'); ?></th>
             <th scope="col"><?php _e('Display', 'lrisg'); ?></th>
           </tr>
@@ -100,9 +99,8 @@ if (isset($_POST['frm_Lrisg_display']) && $_POST['frm_Lrisg_display'] == 'yes')
 					</td>
 					<td><?php echo esc_html(stripslashes($data['Lrisg_title'])); ?></td>
 					<td><a href="<?php echo esc_html(stripslashes($data['Lrisg_path'])); ?>" target="_blank"><?php echo esc_html(stripslashes($data['Lrisg_path'])); ?></a></td>
-					<td><?php echo esc_html(stripslashes($data['Lrisg_target'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['Lrisg_order'])); ?></td>
-					<td><?php echo esc_html(stripslashes($data['Lrisg_status'])); ?></td>
+					<td><?php echo $data['Lrisg_order']; ?></td>
+					<td><?php echo $data['Lrisg_status']; ?></td>
 				</tr>
 				<?php 
 				$i = $i+1; 
