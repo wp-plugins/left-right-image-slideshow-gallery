@@ -5,8 +5,8 @@ Author URI: URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-r
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags:  image, slideshow, gallery
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 10.2
+Tested up to: 4.0
+Stable tag: 10.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -35,25 +35,7 @@ We have three option to install and configure this Left right image slideshow ga
 
 http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
-**My other related plugins**
-
-[Up down image slideshow gallery](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-up-down-image-slideshow-script/)	
-[Left right image slideshow gallery](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/)	
-[Information reel](http://www.gopiplus.com/work/2011/04/16/wordpress-plugin-information-reel/)	
-[News announcement scroll](http://www.gopiplus.com/work/2011/01/01/news-announcement-scroll/)		
-[Continuous rss scrolling](http://www.gopiplus.com/work/2010/09/05/continuous-rss-scrolling/)		
-[Continuous announcement scroller](http://www.gopiplus.com/work/2010/09/04/continuous-announcement-scroller/)		
-[Vertical scroll recent post](http://www.gopiplus.com/work/2010/07/18/vertical-scroll-recent-post/)		
-[Superb slideshow gallery](http://www.gopiplus.com/work/2010/10/10/superb-slideshow-gallery/)		
-[Email newsletter](http://www.gopiplus.com/work/2010/09/25/email-newsletter/)			
-		 	
-To see my all plugin : [click here](http://www.gopiplus.com/work/plugin-list/)		
-
-Tags: Continuous, gallery, horizontal, image, imagegallery, left right, plugin, reel, slideshow, widget, wordpress	
-	
 == Installation ==	
-
-**Installation Instruction & Configuration**  	
 
 **Method 1**	
 
@@ -85,10 +67,7 @@ Q5) Where to update the duration of transition?
 
 Q6) Where to update the pause time between images?
 
-Click the below link to see answer for all questions!			
 More info : [click to go](http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/)		
-
-http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/	
 
 == Screenshots ==
 
@@ -97,6 +76,10 @@ http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slides
 2. Admin Page. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
 == Upgrade Notice ==
+
+= 10.3 =
+
+1. Tested up to 4.0
 
 = 10.2 =
 
@@ -165,6 +148,10 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.3 =
+
+1. Tested up to 4.0
 
 = 10.2 =
 
