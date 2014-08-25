@@ -33,8 +33,6 @@ Left right image slideshow gallery lets showcase images in a horizontal move sty
 
 We have three option to install and configure this Left right image slideshow gallery plugin. 
 
-http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
-
 == Installation ==	
 
 **Method 1**	
