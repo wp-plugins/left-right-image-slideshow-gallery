@@ -5,8 +5,8 @@ Author URI: URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-r
 Plugin URI: http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 Tags:  image, slideshow, gallery
 Requires at least: 3.4
-Tested up to: 4.0
-Stable tag: 10.3
+Tested up to: 4.1
+Stable tag: 10.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -74,6 +74,10 @@ More info : [click to go](http://www.gopiplus.com/work/2011/04/25/wordpress-plug
 2. Admin Page. http://www.gopiplus.com/work/2011/04/25/wordpress-plugin-left-right-image-slideshow-gallery/
 
 == Upgrade Notice ==
+
+= 10.4 =
+
+1. Tested up to 4.1
 
 = 10.3 =
 
@@ -146,6 +150,10 @@ Javascript added as per W3C standard.
 First version		
 
 == Changelog ==
+
+= 10.4 =
+
+1. Tested up to 4.1
 
 = 10.3 =
 
